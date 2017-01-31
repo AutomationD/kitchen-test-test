@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'test-kitchen'
+gem 'kitchen-vagrant'
+gem 'kitchen-verifier-serverspec'
+gem 'net-ssh','~> 2.9'
+gem 'serverspec'

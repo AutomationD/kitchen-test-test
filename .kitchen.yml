@@ -1,0 +1,50 @@
+---
+driver:
+  name: vagrant
+  ssh:
+    insert_key: false
+    shell: '"/bin/sh"'
+
+  # Ensure no synced directores are needed for caching
+  disable_cache: true
+  cache_directory:
+
+  customize:
+
+verifier:
+  name: serverspec
+  remote_exec: false
+  bundler_path: '/Users/dmitry/.rbenv/shims'
+  rspec_path: '/Users/dmitry/.rbenv/shims'
+  gemfile: Gemfile
+#  default_pattern: true
+  patterns:
+    - test/integration/default/serverspec/ssh_spec.rb
+
+#verifier:
+#  name: busser
+#  remote_exec: false
+
+provisioner:
+  name: shell
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  script: test/scripts/bootstrap.sh
+
+platforms:
+  - name: test-platform
+    driver_plugin: vagrant
+    driver_config:
+      box: lifeeth/openwrt-15.05-x86
+      username: root
+      password: root
+
+
+suites:
+  - name: default
+    verifier:
+      env_vars:
+        KITCHEN_HOST: 127.0.0.1
+        KITCHEN_USERNAME: root
+        KITCHEN_PASSWORD: root
+        KITCHEN_PORT: 2222
