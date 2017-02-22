@@ -26,12 +26,15 @@ provisioner:
   script: test/scripts/bootstrap.sh
 
 platforms:
-  - name: openwrt15
-    driver_config:
-      box: kireevco/openwrt-15.05.1-x86
-      box_url: https://bintray.com/kireevco/vagrant/download_file?file_path=openwrt-15.05.1-x86.box
-      username: root
-      password: root
+  - name: ubuntu-16.04
+    driver:
+      box: bento/ubuntu-16.04
+#  - name: openwrt15
+#    driver_config:
+#      box: kireevco/openwrt-15.05.1-x86
+#      box_url: https://bintray.com/kireevco/vagrant/download_file?file_path=openwrt-15.05.1-x86.box
+#      username: root
+#      password: root
 
 suites:
   - name: default
